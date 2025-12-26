@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SystemUser {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(150)
+  email     String   @unique @db.VarChar(150)
+  password  String
+  role      String   @db.VarChar(20)
+  status    String   @default("ACTIVE") @db.VarChar(20)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
+
+  @@map("system_users")
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  fullName    String   @map("full_name") @db.VarChar(150)
+  mobile      String   @db.VarChar(15)
+  email       String?  @db.VarChar(150)
+  proofType   String   @map("proof_type") @db.VarChar(20)
+  proofNumber String   @map("proof_number") @db.VarChar(50)
+  createdById Int      @map("created_by_id")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+
+  @@map("users")
+}
+
+model Insurance {
+  id                Int       @id @default(autoincrement())
+  userId            Int       @map("user_id")
+  companyName       String    @map("company_name") @db.VarChar(150)
+  insuranceNumber   String    @map("insurance_number") @db.VarChar(100)
+  insuranceType     String    @map("insurance_type") @db.VarChar(50)
+  createdAt         DateTime  @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt         DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
+  insuranceFromDate DateTime? @map("insurance_from_date") @db.Date
+  insuranceToDate   DateTime? @map("insurance_to_date") @db.Date
+  insuranceAmount   Decimal?  @map("insurance_amount") @db.Decimal(10, 2)
+
+  @@map("insurance")
+}
+
+model Nominee {
+  id          Int      @id @default(autoincrement())
+  insuranceId Int      @map("insurance_id")
+  nomineeName String   @map("nominee_name") @db.VarChar(150)
+  mobile      String   @db.VarChar(15)
+  relation    String   @db.VarChar(50)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt   DateTime @default(now()) @map("updated_at") @db.Timestamp(6)
+
+  @@map("nominee")
+}
+
+model AuthUser {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email     String    @unique
+  password  String?
+  role      String    @default("USER")
+  name      String?
+  createdAt DateTime? @default(now()) @db.Timestamp(6)
+  updatedAt DateTime? @default(now()) @db.Timestamp(6)
+  Person    Person?
+}
+
+model Person {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fullName    String
+  mobile      String
+  email       String?
+  proofType   String
+  proofNumber String
+  createdAt   DateTime? @default(now()) @db.Timestamp(6)
+  updatedAt   DateTime? @default(now()) @db.Timestamp(6)
+  authUserId  String?   @unique @db.Uuid
+  AuthUser    AuthUser? @relation(fields: [authUserId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_authuser")
+}
+
+enum proof_type {
+  AADHAR
+  PAN
+}
+
+enum system_role {
+  SUPER_ADMIN
+  ADMIN
+  AGENT
+}
+
+enum user_status {
+  ACTIVE
+  INACTIVE
+}

@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.tableWrap {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+}

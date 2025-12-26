@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+    optimizeCss: false,
+    optimizePackageImports: false,
+  },
+  devIndicators: {
+    buildActivity: true,
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

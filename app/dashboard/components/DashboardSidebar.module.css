@@ -1,0 +1,71 @@
+/* MAIN SIDEBAR */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* MOBILE */
+.mobile {
+  width: 260px;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.logoAccent {
+  color: #1976d2;
+}
+
+/* MENU */
+.menu {
+  flex: 1;
+  padding: 8px;
+}
+
+.menuItem {
+  border-radius: 12px;
+  margin-bottom: 6px;
+}
+
+.menuItem:hover {
+  background: rgba(25, 118, 210, 0.08);
+}
+
+/* USER CARD */
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  margin: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.avatar {
+  font-size: 42px;
+  color: #1976d2;
+}
+
+.role {
+  color: #6b7280;
+}
+
+/* LOGOUT */
+.logout {
+  margin: 0 12px 16px;
+  border-radius: 12px;
+  justify-content: flex-start;
+}

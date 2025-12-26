@@ -1,0 +1,93 @@
+.header {
+  height: 72px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 179, 106, 0.92),
+    rgba(26, 115, 232, 0.92)
+  );
+  backdrop-filter: blur(10px);
+}
+
+.toolbar {
+  max-width: 1400px;
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Logo Text Styling */
+.logo {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.logoAccent {
+  color: #e8f3ff;
+}
+
+/* Search Bar */
+.searchWrap {
+  flex: 1;
+  padding: 0 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.searchInner {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 8px 14px;
+  border-radius: 50px;
+  max-width: 540px;
+  width: 100%;
+  backdrop-filter: blur(6px);
+}
+
+/* Hamburger only on mobile */
+.menuButton {
+  display: inline-flex;
+}
+
+@media (min-width: 900px) {
+  .menuButton {
+    display: none !important;
+  }
+}
+
+
+/* Autocomplete container */
+.autocompletePaper {
+  margin-top: 8px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* Single suggestion row */
+.optionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.optionRow:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.optionName {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.optionMobile {
+  font-size: 14px;
+  color: #6b7280;
+}
